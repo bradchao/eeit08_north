@@ -18,6 +18,7 @@ public class Brad09 {
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(person);
 			System.out.println(json);
+			
 			System.out.println("-----");
 			
 			HashMap<String, Object> brad;
