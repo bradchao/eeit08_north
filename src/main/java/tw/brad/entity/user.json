@@ -1,0 +1,20 @@
+{
+	"name" : "Brad",
+	"age": 18,
+	"address": {
+		"city": "台中市",
+		"town": "南屯區",
+		"addr": "公益路100號"
+	},
+	"phones": [
+		{
+			"type": "CHT",
+			"numbe": "0912-123456"
+		},
+		{
+			"type": "ABC",
+			"numbe": "0912-765432"
+		}
+	]
+	
+}
