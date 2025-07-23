@@ -13,7 +13,7 @@ public class Product {
 	@Column(name = "ProductID")
 	private Long productId;
 	
-	@Column(name = "productName")
+	@Column(name = "ProductName")
 	private String productName;
 	
 	@Column(name = "UnitsInStock")
