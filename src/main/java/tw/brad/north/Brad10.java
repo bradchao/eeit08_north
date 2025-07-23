@@ -2,6 +2,9 @@ package tw.brad.north;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import tw.brad.entity.Phone;
+import tw.brad.entity.User;
+
 public class Brad10 {
 
 	public static void main(String[] args) {
@@ -27,7 +30,22 @@ public class Brad10 {
 					}				
 				""";
 		ObjectMapper mapper = new ObjectMapper();
-		
+		try {
+			User user = mapper.readValue(json, User.class);
+			System.out.println(user.getName());
+			System.out.println(user.getAddress().getCity());
+			for (Phone phone: user.getPhones()) {
+				System.out.println(phone.getNumber());
+			}
+			//----------------------
+			String json2 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
+			System.out.println(json2);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		
