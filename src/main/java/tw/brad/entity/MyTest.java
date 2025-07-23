@@ -16,6 +16,13 @@ public class MyTest {
 	private Integer id;
 	@Column(name = "fname")
 	private String fname;
+	
+	public MyTest() {}
+	public MyTest(Integer id, String fname) {
+		this.id = id;
+		this.fname = fname;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

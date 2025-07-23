@@ -18,10 +18,6 @@ public class Brad05 {
 			List<Object[]> employees = 
 					session.createQuery(hql, Object[].class).getResultList();
 			for (Object[] employee : employees) {
-				Object obj = employee[0];
-				if (obj instanceof Integer) {
-					System.out.println("OK");
-				}
 				
 				
 				System.out.printf("%d. %s : %s %s\n",
