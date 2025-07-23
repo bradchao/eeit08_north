@@ -5,6 +5,7 @@ import org.hibernate.cfg.Configuration;
 
 import tw.brad.entity.Employee;
 import tw.brad.entity.MyTest;
+import tw.brad.entity.Product;
 
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
@@ -16,6 +17,7 @@ public class HibernateUtil {
 			
 			config.addAnnotatedClass(Employee.class);
 			config.addAnnotatedClass(MyTest.class);
+			config.addAnnotatedClass(Product.class);
 			
 			sessionFactory = config.buildSessionFactory();
 		}
