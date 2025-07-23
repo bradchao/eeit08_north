@@ -10,6 +10,7 @@ public class Brad02 {
 	public static void main(String[] args) {
 		try {
 			Class<?> cla =  Class.forName("tw.brad.north.Brad021");
+			//Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			
 			Object obj = cla.getDeclaredConstructor().newInstance();
 			
