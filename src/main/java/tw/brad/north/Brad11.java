@@ -34,7 +34,7 @@ public class Brad11 {
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			List<Object[]> result = session.createQuery(hql, Object[].class)
-					.setParameter("orderId", 10249)
+					.setParameter("orderId", 10248)
 					.getResultList();
 			
 			for (Object[] row : result) {
@@ -86,7 +86,37 @@ public class Brad11 {
 		System.out.println(json);
 		System.out.println("-------");
 		
+		jsonToOrderItem(json);
+		
 	}
 	
-
+	static void jsonToOrderItem(String json) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		OrderItem order = mapper.readValue(json, OrderItem.class);
+		System.out.println(order.custoomer);
+		System.out.println(order.employee);
+		System.out.println(order.count);
+		System.out.println(order.success);
+		for (DetailItem detail : order.details) {
+			System.out.printf("%s : %f : %d\n", detail.pname, detail.price, detail.qty);
+		}
+	}
+	
 }
+
+class OrderItem {
+	public Boolean success;
+	public Integer count;
+	public String custoomer;
+	public String employee;
+	public List<DetailItem> details;
+}
+class DetailItem {
+	public String pname;
+	public Double price;
+	public Integer qty;
+}
+
+
+
+
