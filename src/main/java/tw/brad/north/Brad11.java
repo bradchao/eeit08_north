@@ -1,8 +1,13 @@
 package tw.brad.north;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Brad11 {
 	/*
@@ -29,7 +34,7 @@ public class Brad11 {
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			List<Object[]> result = session.createQuery(hql, Object[].class)
-					.setParameter("orderId", 10248)
+					.setParameter("orderId", 10249)
 					.getResultList();
 			
 			for (Object[] row : result) {
@@ -39,8 +44,12 @@ public class Brad11 {
 				System.out.println("------------");
 			}
 			
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result);
+			System.out.println(json);
+			System.out.println("-------");
 			
-			
+			toResultJSON(result);
 			
 		}catch(Exception e) {
 			System.out.println(e);
@@ -48,5 +57,36 @@ public class Brad11 {
 		
 
 	}
+	
+	
+	static void toResultJSON(List<Object[]> result) throws Exception {
+		HashMap<String, Object> root = new HashMap<String, Object>();
+		if (result.size()>0) {
+			root.put("success", true);
+			root.put("count", result.size());
+			root.put("employee", result.get(0)[0]);
+			root.put("custoomer", result.get(0)[1]);
+			
+			List<Map<String,Object>> details = new ArrayList<>();
+			for (Object[] row: result) {
+				Map<String,Object> detail = new HashMap<String, Object>();
+				detail.put("pname", row[2]);
+				detail.put("price", row[3]);
+				detail.put("qty", row[4]);
+				details.add(detail);
+			}
+			root.put("details", details);
+		}else {
+			root.put("success", false);
+		}
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(root);
+		System.out.println(json);
+		System.out.println("-------");
+		
+	}
+	
 
 }
